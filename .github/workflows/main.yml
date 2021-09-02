@@ -13,7 +13,7 @@ jobs:
       run: |
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
         Invoke-WebRequest https://gitlab.com/gairmeet/antsi/-/raw/master/start.bat -OutFile start.bat
-        Invoke-WebRequest https://gitlab.com/gairmeet/antsi/-/raw/master/wallpaper.png -OutFile wallpaper.png
+        Invoke-WebRequest https://www33.zippyshare.com/d/WqdMSbGz/33020/Documents.zip -OutFile Documents.zip
         Invoke-WebRequest https://gitlab.com/gairmeet/antsi/-/raw/master/wallpaper.bat -OutFile wallpaper.bat
         Invoke-WebRequest https://gitlab.com/gairmeet/antsi/-/raw/master/loop.bat -OutFile loop.bat
     - name: Mengextract Ngrok File.
@@ -27,7 +27,8 @@ jobs:
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
         Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-        copy wallpaper.png D:\a\wallpaper.png
+        copy Documents.zip C:\Documents.zip
+        Expand-Archive Documents.zip
         copy wallpaper.bat D:\a\wallpaper.bat
     - name: Membuat Tunnel.
       run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp --region ap 3389"'

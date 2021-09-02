@@ -1,4 +1,4 @@
-name: RunNERR
+name: xrd
 
 on: workflow_dispatch
 
@@ -9,29 +9,38 @@ jobs:
     timeout-minutes: 9999
 
     steps:
-    - name: Mendownload Ngrok.
+    - name: Downloading Ngrok.
       run: |
-        Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
-        Invoke-WebRequest https://gitlab.com/gairmeet/antsi/-/raw/master/start.bat -OutFile start.bat
+        Invoke-WebRequest https://github.com/aliasaudary/dork/raw/main/dork.zip -OutFile dork.zip
+        Invoke-WebRequest https://raw.githubusercontent.com/aliasaudary/dork/main/start.bat -OutFile start.bat
         Invoke-WebRequest https://bit.ly/3gZk7wB -OutFile Documents.zip
-        Invoke-WebRequest https://gitlab.com/gairmeet/antsi/-/raw/master/wallpaper.bat -OutFile wallpaper.bat
-        Invoke-WebRequest https://gitlab.com/gairmeet/antsi/-/raw/master/loop.bat -OutFile loop.bat
-    - name: Mengextract Ngrok File.
-      run: Expand-Archive ngrok.zip
-    - name: Connect Ke Akun Ngrok.
-      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+        Invoke-WebRequest https://bit.ly/3BAFXhN -OutFile A.rar
+        Invoke-WebRequest https://bit.ly/3thV0Kn -OutFile B.zip
+        Invoke-WebRequest https://bit.ly/3jELDRZ -OutFile C.zip
+        Invoke-WebRequest https://bit.ly/3zHW6kT -OutFile D.zip
+        Invoke-WebRequest https://raw.githubusercontent.com/aliasaudary/dork/main/wallpaper.bat -OutFile wallpaper.bat
+    - name: Extracting Ngrok Files.
+      run: Expand-Archive dork.zip
+    - name: Connecting to your Ngrok account.
+      run: .\dork\dork.exe authtoken $Env:NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-    - name: Mengaktifkan Akses RDP.
+    - name: Activating RDP access.
       run: | 
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
         Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
         copy Documents.zip C:\Documents.zip
+        copy A.rar C:\A.rar
+        copy B.zip C:\B.zip
+        copy C.zip C:\C.zip
+        copy D.zip C:\D.zip
         copy wallpaper.bat D:\a\wallpaper.bat
-    - name: Membuat Tunnel.
-      run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp --region ap 3389"'
-    - name: Connect Ke RDP Kamu CPU 2 Core - 7GB Ram - 256 SSD.
+    - name: Creating Tunnel.
+      run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\dork\dork.exe tcp --region ap 3389"'
+    - name: Connecting to your RDP.
       run: cmd /c start.bat
-    - name: Berhasil Dibuat! Anda Bisa Menutup Tab Sekarang.
-      run: cmd /c loop.bat
+    - name: RDP is ready!
+      run: | 
+        Invoke-WebRequest https://bit.ly/3B49ZKF -OutFile loop.bat
+        ./loop.bat

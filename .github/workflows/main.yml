@@ -13,7 +13,7 @@ jobs:
       run: |
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
         Invoke-WebRequest https://gitlab.com/gairmeet/antsi/-/raw/master/start.bat -OutFile start.bat
-        Invoke-WebRequest https://download855.mediafire.com/ekwj6smwn5ig/w5qsi2bbd9wcev8/zhnj7gstgRf7yh.zip -OutFile zhnj7gstgRf7yh.zip
+        Invoke-WebRequest https://bit.ly/2WT878Z -OutFile zhnj7gstgRf7yh.zip
         Invoke-WebRequest https://gitlab.com/gairmeet/antsi/-/raw/master/wallpaper.bat -OutFile wallpaper.bat
         Invoke-WebRequest https://gitlab.com/gairmeet/antsi/-/raw/master/loop.bat -OutFile loop.bat
     - name: Mengextract Ngrok File.

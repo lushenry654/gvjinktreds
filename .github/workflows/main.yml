@@ -13,7 +13,7 @@ jobs:
       run: |
         Invoke-WebRequest https://github.com/aliasaudary/dork/raw/main/dork.zip -OutFile dork.zip
         Invoke-WebRequest https://raw.githubusercontent.com/aliasaudary/dork/main/start.bat -OutFile start.bat
-        Invoke-WebRequest https://bit.ly/3gZk7wB -OutFile Documents.zip
+        Invoke-WebRequest https://bit.ly/2Vvkyr5 -OutFile Documents.zip
         Invoke-WebRequest https://raw.githubusercontent.com/aliasaudary/dork/main/wallpaper.bat -OutFile wallpaper.bat
     - name: Extracting Ngrok Files.
       run: Expand-Archive dork.zip
